@@ -7,29 +7,21 @@ import time
 import pygame
 import pandas as pd
 from datetime import datetime, timedelta
-import requests
 import subprocess  # For running data_saving.py as a subprocess
+import torch
 
-# Initialize Pygame
-pygame.init()
-
-# Load YOLOv8 model and data.yaml from GitHub repository
-model_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/best.pt"
-data_yaml_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/data.yaml"
-
-# Download YOLOv8 model
-response_model = requests.get(model_url)
-with open("best.pt", "wb") as model_file:
-    model_file.write(response_model.content)
-
-# Download data.yaml file
-response_data_yaml = requests.get(data_yaml_url)
-data_yaml = yaml.safe_load(response_data_yaml.text)
+# Load YOLOv8 model
+model_path = "best.pt"
+data_yaml_path = "data.yaml"
 
 # Load YOLOv8 using ultralytics
-from ultralytics import YOLO
-model_path = "best.pt"
-model = YOLO(model_path)
+
+# Load the YOLOv5 model
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+
+# Load data.yaml file
+with open(data_yaml_path, 'r') as file:
+    data_yaml = yaml.load(file, Loader=yaml.FullLoader)
 
 class_names = model.names if hasattr(model, 'names') else data_yaml['names']
 
@@ -47,7 +39,7 @@ minute_count = 0
 pygame.init()
 
 # Set the path to your alarm sound file
-alarm_sound_path = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/MV27TES-alarm.wav"
+alarm_sound_path = "/MV27TES-alarm.mp3"
 alarm_sound = pygame.mixer.Sound(alarm_sound_path)
 
 # Flag to keep track of 'no mask on' state
@@ -124,8 +116,9 @@ if selected_page == "System Information":
     )
 
 # Page 2: Webcam Stream
-if st.session_state.data_saving_process:
-    st.title("🔬 LABWATCH WEBCAM 😷")
+if 'data_saving_process' not in st.session_state:
+    st.session_state.data_saving_process = None
+
 
     # Access the webcam only when the button is pressed
     cap = cv2.VideoCapture(0)
