@@ -4,6 +4,9 @@ import os
 # Suppress a warning in newer versions of Streamlit
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
+# Import OpenCV here
+import cv2
+
 # Set OpenCV rendering backend to avoid libGL.so.1 error
 cv2.startWindowThread()  # Add this line
 cv2.namedWindow("dummy")  # Add this line
