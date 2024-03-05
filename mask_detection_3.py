@@ -8,18 +8,25 @@ import pygame
 import pandas as pd
 from datetime import datetime, timedelta
 import subprocess  # For running data_saving.py as a subprocess
+import requests  # Import the 'requests' library for making HTTP requests
 
-# Load YOLOv8 model
-model_path = r"https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/best.pt"
-data_yaml_path = r"https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/data.yaml"
+# Load YOLOv8 model and data.yaml from GitHub repository
+model_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/best.pt"
+data_yaml_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/data.yaml"
+
+# Download YOLOv8 model
+response_model = requests.get(model_url)
+with open("best.pt", "wb") as model_file:
+    model_file.write(response_model.content)
+
+# Download data.yaml file
+response_data_yaml = requests.get(data_yaml_url)
+data_yaml = yaml.safe_load(response_data_yaml.text)
 
 # Load YOLOv8 using ultralytics
 from ultralytics import YOLO
+model_path = "best.pt"
 model = YOLO(model_path)
-
-# Load data.yaml file
-with open(data_yaml_path, 'r') as file:
-    data_yaml = yaml.load(file, Loader=yaml.FullLoader)
 
 class_names = model.names if hasattr(model, 'names') else data_yaml['names']
 
