@@ -10,6 +10,9 @@ from datetime import datetime, timedelta
 import requests
 import subprocess  # For running data_saving.py as a subprocess
 
+# Initialize Pygame
+pygame.init()
+
 # Load YOLOv8 model and data.yaml from GitHub repository
 model_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/best.pt"
 data_yaml_url = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/data.yaml"
