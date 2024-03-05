@@ -15,7 +15,7 @@ torchvision==0.10.1
 torchaudio==0.9.1
 
 # Ensure libgl1 is installed
--e git://github.com/ignaciogpasensio/WATCHLAB_NLP.git#egg=libgl1
+#-e git://github.com/ignaciogpasensio/WATCHLAB_NLP.git#egg=libgl1
 
 
 #opencv-python==4.9.0.80
