@@ -1,7 +1,11 @@
 import streamlit as st
+import os
 
 # Suppress a warning in newer versions of Streamlit
 st.set_option('deprecation.showfileUploaderEncoding', False)
+
+# Set OpenCV rendering backend to avoid libGL.so.1 error
+os.environ['OPENCV_VIDEOIO_PRIORITY_MSMF'] = '0'
 
 import cv2
 import numpy as np
