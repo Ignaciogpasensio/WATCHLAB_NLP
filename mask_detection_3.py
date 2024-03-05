@@ -16,8 +16,9 @@ data_yaml_path = "data.yaml"
 
 # Load YOLOv8 using ultralytics
 
-# Load the YOLOv5 model
-model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+# Load YOLOv5 model
+model_path = "best.pt"
+model = torch.hub.load('ultralytics/yolov5', 'yolov5s', source=model_path)
 
 # Load data.yaml file
 with open(data_yaml_path, 'r') as file:
