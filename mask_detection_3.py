@@ -1,17 +1,4 @@
 import streamlit as st
-import os
-
-# Suppress a warning in newer versions of Streamlit
-st.set_option('deprecation.showfileUploaderEncoding', False)
-
-# Add the following lines to set the OpenCV rendering backend
-os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = '1'
-import cv2
-
-# Set OpenCV rendering backend to avoid libGL.so.1 error
-cv2.startWindowThread()
-cv2.namedWindow("dummy")
-
 import cv2
 import numpy as np
 import yaml
