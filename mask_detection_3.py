@@ -47,7 +47,7 @@ minute_count = 0
 pygame.init()
 
 # Set the path to your alarm sound file
-alarm_sound_path = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/MV27TES-alarm.mp3"
+alarm_sound_path = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/MV27TES-alarm.wav"
 alarm_sound = pygame.mixer.Sound(alarm_sound_path)
 
 # Flag to keep track of 'no mask on' state
