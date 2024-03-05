@@ -1,4 +1,8 @@
 import streamlit as st
+
+# Suppress a warning in newer versions of Streamlit
+st.set_option('deprecation.showfileUploaderEncoding', False)
+
 import cv2
 import numpy as np
 import yaml
