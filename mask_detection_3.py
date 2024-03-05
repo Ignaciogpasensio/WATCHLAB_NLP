@@ -10,8 +10,8 @@ from datetime import datetime, timedelta
 import subprocess  # For running data_saving.py as a subprocess
 
 # Load YOLOv8 model
-model_path = r"/best.pt"
-data_yaml_path = r"/data.yaml"
+model_path = r"https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/best.pt"
+data_yaml_path = r"https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/data.yaml"
 
 # Load YOLOv8 using ultralytics
 from ultralytics import YOLO
@@ -37,7 +37,7 @@ minute_count = 0
 pygame.init()
 
 # Set the path to your alarm sound file
-alarm_sound_path = "/MV27TES-alarm.mp3"
+alarm_sound_path = "https://raw.githubusercontent.com/Ignaciogpasensio/WATCHLAB_NLP/main/MV27TES-alarm.mp3"
 alarm_sound = pygame.mixer.Sound(alarm_sound_path)
 
 # Flag to keep track of 'no mask on' state
