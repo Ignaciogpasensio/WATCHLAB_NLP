@@ -5,7 +5,8 @@ import os
 st.set_option('deprecation.showfileUploaderEncoding', False)
 
 # Set OpenCV rendering backend to avoid libGL.so.1 error
-os.environ['OPENCV_VIDEOIO_PRIORITY_MSMF'] = '0'
+cv2.startWindowThread()  # Add this line
+cv2.namedWindow("dummy")  # Add this line
 
 import cv2
 import numpy as np
